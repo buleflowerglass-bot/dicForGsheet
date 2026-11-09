@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 350px; padding: 15px; font-family: "Segoe UI", sans-serif; }
+    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    h3 { margin: 0; color: #333; font-size: 16px; }
+    .switch-group { display: flex; gap: 8px; margin-bottom: 8px; }
+    .switch-label { font-size: 12px; color: #333; cursor: pointer; font-weight: bold; background: #f1f3f4; padding: 4px 8px; border-radius: 4px; display: flex; align-items: center; gap: 4px;}
+    .config-row { display: flex; gap: 10px; margin-bottom: 8px; }
+    .config-item { flex: 1; display: flex; flex-direction: column; }
+    .config-item label { font-size: 12px; font-weight: bold; color: #444; margin-bottom: 4px; }
+    .config-item input { width: 100%; box-sizing: border-box; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; }
+    .font-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .font-row label { font-size: 12px; font-weight: bold; color: #444; white-space: nowrap; }
+    .font-row input[type=range] { flex: 1; }
+    #fontSizeValue { font-size: 12px; color: #333; width: 36px; text-align: right; }
+    p { font-size: 12px; color: #666; margin-bottom: 8px; line-height: 1.4;}
+    textarea { width: 100%; height: 160px; box-sizing: border-box; padding: 8px; font-family: monospace; border: 1px solid #ccc; border-radius: 4px; white-space: pre; overflow-wrap: normal; overflow-x: auto;}
+    
+    .btn-group { display: flex; gap: 8px; margin-top: 10px; }
+    button { padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: white; }
+    #saveBtn { flex: 2; background: #1a73e8; }
+    #saveBtn:hover { background: #1557b0; }
+    #resetPosBtn { flex: 1; background: #ea4335; }
+    #resetPosBtn:hover { background: #c5221f; }
+    #status { margin-top: 8px; font-size: 12px; text-align: center; height: 16px; font-weight: bold;}
+    
+    #errorScreen { display: none; text-align: center; padding: 40px 10px; }
+    #errorScreen h3 { color: #ea4335; margin-bottom: 10px; font-size: 18px;}
+    #errorScreen p { font-size: 13px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div id="errorScreen">
+    <h3>❌ 无法加载</h3>
+    <p>请在 Google 表格页面中使用此插件。<br>如果您刚更新插件，请先<strong>刷新表格页面</strong>。</p>
+  </div>
+
+  <div id="mainContent" style="display: none;">
+    <div class="header-row">
+      <h3>⚙️ 本表格专属配置</h3>
+    </div>
+    
+    <div class="switch-group">
+      <label class="switch-label">
+        <input type="checkbox" id="pluginEnabled"> 启用插件
+      </label>
+      <label class="switch-label" title="开启后，每个JSON独立对应单行">
+        <input type="checkbox" id="rowModeEnabled"> 按行生效模式
+      </label>
+    </div>
+
+    <div class="config-row">
+      <div class="config-item">
+        <label>生效工作表 (留空不限):</label>
+        <input type="text" id="targetSheets" placeholder="如: Sheet1">
+      </div>
+      <div class="config-item">
+        <label>生效列 (留空不限):</label>
+        <input type="text" id="targetColumns" placeholder="如: B, C">
+      </div>
+    </div>
+
+    <div class="font-row">
+      <label>悬浮窗字号:</label>
+      <input type="range" id="fontSizeSlider" min="12" max="48" step="1" value="20">
+      <span id="fontSizeValue">20px</span>
+    </div>
+
+    <p>💡 提示：此界面的<strong>所有设置与词典</strong>均与当前表格独立绑定，互不干扰。关闭页面即自动销毁。（字号为全局设置）</p>
+    
+    <textarea id="dictInput" spellcheck="false" placeholder="在此粘贴 JSON 格式的字典..."></textarea>
+    
+    <div class="btn-group">
+      <button id="saveBtn">解析并保存至本页</button>
+      <button id="resetPosBtn" title="悬浮窗在屏幕外找不到时点击">找回窗口</button>
+    </div>
+    <div id="status"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

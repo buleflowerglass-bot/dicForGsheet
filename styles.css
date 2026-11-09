@@ -1,0 +1,82 @@
+#serbian-ruby-panel {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  width: 350px;
+  height: 200px;
+  min-width: 250px;
+  min-height: 120px;
+  background: #ffffff;
+  border: 1px solid #c0c0c0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  z-index: 999999;
+  border-radius: 8px;
+  display: none; 
+  flex-direction: column;
+  resize: both;
+  overflow: hidden;
+}
+
+#serbian-panel-header {
+  background: #f1f3f4;
+  padding: 8px 15px;
+  font-size: 13px;
+  color: #5f6368;
+  font-weight: bold;
+  cursor: grab;
+  user-select: none;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 让标题和按钮区分别靠左和靠右 */
+}
+
+#serbian-panel-header:active {
+  cursor: grabbing;
+}
+
+/* 标题栏右侧按钮区 */
+#serbian-header-btns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 标题栏通用小按钮（字号加减、关闭） */
+.serbian-hdr-btn {
+  cursor: pointer;
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.serbian-hdr-btn:hover {
+  background: #e8eaed;
+  color: #1a73e8;
+}
+
+/* 关闭按钮的专属样式 */
+#serbian-close-btn {
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+#serbian-close-btn:hover {
+  background: #e8eaed;
+  color: #d93025; /* 鼠标放上去变红 */
+}
+
+#serbian-panel-content {
+  flex: 1;
+  padding: 15px 20px;
+  overflow-y: auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: var(--serbian-font-size, 20px);
+  line-height: 2.8;
+  color: #202124;
+}
+
+#serbian-panel-content ruby { margin-right: 6px; }
+#serbian-panel-content rt { color: #ea4335; font-size: calc(var(--serbian-font-size, 20px) * 0.7); font-weight: bold; transform: translateY(-2px); }

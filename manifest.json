@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "塞语标注助手",
+  "version": "2.0",
+  "description": "随时修改词典，在谷歌表格中点击单元格即可在本地悬浮标注中文意思。",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/spreadsheets/*"],
+      "css": ["styles.css"],
+      "js": ["content.js"]
+    }
+  ]
+}
