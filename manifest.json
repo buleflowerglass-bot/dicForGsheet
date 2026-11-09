@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "塞语标注助手",
+  "name": "表格翻译助手",
   "version": "2.0",
   "description": "随时修改词典，在谷歌表格中点击单元格即可在本地悬浮标注中文意思。",
   "permissions": [
